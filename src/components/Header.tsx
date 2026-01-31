@@ -28,13 +28,17 @@ const Header = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <a href="#home" className="flex items-center gap-3">
+            <button
+              type="button"
+              className="flex items-center gap-3 bg-transparent border-none cursor-pointer"
+              onClick={() => handleNavClick("home")}
+            >
               <img src={sharkLogo} alt="Shark Fight Club" className="h-10 w-10 object-contain" />
               <div>
                 <div className="font-display text-xl font-bold tracking-wide">SHARK</div>
                 <div className="text-primary text-xs tracking-widest">FIGHT CLUB</div>
               </div>
-            </a>
+            </button>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-8">
