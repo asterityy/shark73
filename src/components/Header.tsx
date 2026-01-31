@@ -8,12 +8,19 @@ const Header = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const navLinks = [
-    { href: "#home", label: "Главная" },
-    { href: "#about", label: "О нас" },
-    { href: "#programs", label: "Программы" },
-    { href: "#advantages", label: "Преимущества" },
-    { href: "#contacts", label: "Контакты" },
+    { id: "home", label: "Главная" },
+    { id: "about", label: "О нас" },
+    { id: "programs", label: "Программы" },
+    { id: "advantages", label: "Преимущества" },
+    { id: "contacts", label: "Контакты" },
   ];
+
+  const handleNavClick = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <>
@@ -32,13 +39,14 @@ const Header = () => {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-8">
               {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm font-medium tracking-wide hover:text-primary transition-colors uppercase"
+                <button
+                  key={link.id}
+                  type="button"
+                  onClick={() => handleNavClick(link.id)}
+                  className="text-sm font-medium tracking-wide hover:text-primary transition-colors uppercase bg-transparent border-none cursor-pointer"
                 >
                   {link.label}
-                </a>
+                </button>
               ))}
             </nav>
 
@@ -76,14 +84,17 @@ const Header = () => {
             <div className="lg:hidden mt-4 pb-4 border-t border-border pt-4">
               <nav className="flex flex-col gap-4">
                 {navLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    className="text-sm font-medium tracking-wide hover:text-primary transition-colors uppercase"
-                    onClick={() => setIsMenuOpen(false)}
+                  <button
+                    key={link.id}
+                    type="button"
+                    onClick={() => {
+                      handleNavClick(link.id);
+                      setIsMenuOpen(false);
+                    }}
+                    className="text-sm font-medium tracking-wide hover:text-primary transition-colors uppercase bg-transparent border-none cursor-pointer text-left"
                   >
                     {link.label}
-                  </a>
+                  </button>
                 ))}
                 <a href="tel:89278201730" className="flex items-center gap-2 text-primary">
                   <Phone className="w-4 h-4" />
