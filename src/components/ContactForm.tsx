@@ -29,7 +29,7 @@ const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
     e.preventDefault();
     // Отправка данных в Telegram
     const token = "8100479301:AAGoY8q4rKuZXDOzhZ1X-6nP_xBSEyvyFjQ";
-    const chatId = "1271362249";
+    const chatId = "-1003597244136";
     const message = `Новая заявка с сайта!%0AИмя: ${formData.name}%0AВозраст: ${formData.age}%0AТелефон: ${formData.phone}%0AТелеграм: ${formData.telegram}%0AИнтересует: ${formData.interests}`;
     try {
       await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
