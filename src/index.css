@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+@layer base {
+  :root {
+    --background: 220 25% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 20% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 20% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 190 100% 50%;
+    --primary-foreground: 220 25% 8%;
+
+    --secondary: 220 20% 16%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 220 15% 20%;
+    --muted-foreground: 220 10% 60%;
+
+    --accent: 190 100% 50%;
+    --accent-foreground: 220 25% 8%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
+    --ring: 190 100% 50%;
+
+    --radius: 0.5rem;
+
+    --cyan: 190 100% 50%;
+    --cyan-glow: 190 100% 60%;
+    --dark-blue: 220 25% 8%;
+    --card-dark: 220 20% 12%;
+    
+    --gradient-cyan: linear-gradient(135deg, hsl(190 100% 50%), hsl(190 100% 40%));
+    --gradient-dark: linear-gradient(180deg, hsl(220 25% 8%), hsl(220 20% 12%));
+    --shadow-cyan: 0 0 20px hsl(190 100% 50% / 0.3);
+    --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.4);
+
+    --sidebar-background: 220 25% 8%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 190 100% 50%;
+    --sidebar-primary-foreground: 220 25% 8%;
+    --sidebar-accent: 220 20% 16%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 220 20% 20%;
+    --sidebar-ring: 190 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}
+
+@layer components {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-cyan-300;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground font-semibold px-8 py-3 rounded-md 
+           transition-all duration-300 hover:shadow-[0_0_20px_hsl(190_100%_50%_/_0.5)]
+           hover:scale-105 uppercase tracking-wide;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary text-primary font-semibold px-8 py-3 rounded-md
+           transition-all duration-300 hover:bg-primary hover:text-primary-foreground
+           uppercase tracking-wide;
+  }
+
+  .card-dark {
+    @apply bg-card border border-border rounded-xl p-6;
+  }
+
+  .glow-box {
+    @apply border border-primary/30 shadow-[0_0_30px_hsl(190_100%_50%_/_0.15)];
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold;
+  }
+
+  .section-subtitle {
+    @apply text-sm tracking-[0.3em] text-primary uppercase mb-4;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px hsl(190 100% 50% / 0.3); }
+    50% { box-shadow: 0 0 40px hsl(190 100% 50% / 0.5); }
+  }
+}
