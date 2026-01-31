@@ -25,13 +25,24 @@ const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
     interests: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to a server
-    console.log("Form submitted:", formData);
-    toast.success("Заявка отправлена! Мы свяжемся с вами в ближайшее время.");
-    setFormData({ name: "", age: "", phone: "", telegram: "", interests: "" });
-    onClose();
+    // Отправка данных в Telegram
+    const token = "8100479301:AAGoY8q4rKuZXDOzhZ1X-6nP_xBSEyvyFjQ";
+    const chatId = "1271362249";
+    const message = `Новая заявка с сайта!%0AИмя: ${formData.name}%0AВозраст: ${formData.age}%0AТелефон: ${formData.phone}%0AТелеграм: ${formData.telegram}%0AИнтересует: ${formData.interests}`;
+    try {
+      await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `chat_id=${chatId}&text=${message}`,
+      });
+      toast.success("Заявка отправлена! Мы свяжемся с вами в ближайшее время.");
+      setFormData({ name: "", age: "", phone: "", telegram: "", interests: "" });
+      onClose();
+    } catch (error) {
+      toast.error("Ошибка отправки. Попробуйте позже.");
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
